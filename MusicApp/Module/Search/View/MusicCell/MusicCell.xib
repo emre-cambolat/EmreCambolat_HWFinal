@@ -89,7 +89,7 @@
                                             <backgroundConfiguration key="background" image="play.circle" catalog="system"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="listenMusic:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fhS-K5-Yse"/>
+                                            <action selector="listenMusicButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wQj-CB-2dB"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -115,6 +115,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="listenMusicButton" destination="ty3-qT-i0o" id="sjV-db-lkv"/>
                 <outlet property="songAlbumLabel" destination="BG4-hq-DoP" id="9dE-ky-eU2"/>
                 <outlet property="songArtistLabel" destination="u4s-H0-fdh" id="r7U-uk-Xaf"/>
                 <outlet property="songImage" destination="DyG-wM-shs" id="Irj-Ej-5wA"/>

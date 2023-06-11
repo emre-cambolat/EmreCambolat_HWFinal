@@ -69,13 +69,18 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(MusicCell.self, for: indexPath)
+        cell.selectionStyle = .none
+        
+        if let music = presenter.music(at: indexPath.row) {
+            cell.cellPresenter = MusicCellPresenter(view: cell, music: music)
+        }
         return cell
     } 
 }
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        presenter.didSelectRowAt(index: indexPath.row)
     }
 }
 

@@ -48,7 +48,8 @@ extension SearchPresenter: SearchPresenterProtocol {
     func music(at index: Int) -> MusicModel? { musics[index] }
     
     func didSelectRowAt(index: Int) {
-        // TODO:
+        guard let source = music(at: index) else { return }
+        router.navigate(.detail(source: source))
     }
     
     func fetchMusic(_ term: String) {
