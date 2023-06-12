@@ -78,26 +78,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ul8-xR-l5b">
                                 <rect key="frame" x="378" y="0.0" width="42" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ty3-qT-i0o">
-                                        <rect key="frame" x="3" y="22" width="36" height="36"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="C2u-zV-Fr9">
+                                        <rect key="frame" x="3" y="23" width="36" height="34.666666666666671"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="36" id="Riw-lo-Sb0"/>
-                                            <constraint firstAttribute="height" constant="36" id="b9T-Ul-mRg"/>
+                                            <constraint firstAttribute="height" constant="36" id="SVp-2j-Hlh"/>
+                                            <constraint firstAttribute="width" constant="36" id="UlR-is-r3e"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title=" ">
-                                            <backgroundConfiguration key="background" image="play.circle" catalog="system"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="listenMusicButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wQj-CB-2dB"/>
-                                        </connections>
-                                    </button>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="ty3-qT-i0o" firstAttribute="centerY" secondItem="Ul8-xR-l5b" secondAttribute="centerY" id="Ia5-sY-ZIt"/>
+                                    <constraint firstItem="C2u-zV-Fr9" firstAttribute="centerY" secondItem="Ul8-xR-l5b" secondAttribute="centerY" id="0LP-V7-rgY"/>
                                     <constraint firstAttribute="width" constant="42" id="NCX-Ox-aei"/>
-                                    <constraint firstItem="ty3-qT-i0o" firstAttribute="centerX" secondItem="Ul8-xR-l5b" secondAttribute="centerX" id="n0J-zq-Pr9"/>
+                                    <constraint firstItem="C2u-zV-Fr9" firstAttribute="centerX" secondItem="Ul8-xR-l5b" secondAttribute="centerX" id="y4V-yn-yLm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -115,7 +108,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="listenMusicButton" destination="ty3-qT-i0o" id="sjV-db-lkv"/>
+                <outlet property="listenButtonView" destination="Ul8-xR-l5b" id="bwH-Si-HGE"/>
+                <outlet property="listenImageView" destination="C2u-zV-Fr9" id="iLN-BM-XJF"/>
                 <outlet property="songAlbumLabel" destination="BG4-hq-DoP" id="9dE-ky-eU2"/>
                 <outlet property="songArtistLabel" destination="u4s-H0-fdh" id="r7U-uk-Xaf"/>
                 <outlet property="songImage" destination="DyG-wM-shs" id="Irj-Ej-5wA"/>

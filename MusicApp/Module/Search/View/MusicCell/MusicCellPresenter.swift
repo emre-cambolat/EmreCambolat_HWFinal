@@ -54,6 +54,7 @@ extension MusicCellPresenter: MusicCellPresenterProtocol {
             guard let audioURL = music.previewURL else { return }
             AudioManager.shared.downloadAndPlayAudio(from: audioURL) {
                 self.view?.changeListenButtonState(.paused)
+                self.cellState = .paused
             }
             cellState = .listening
         }

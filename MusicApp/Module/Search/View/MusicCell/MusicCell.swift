@@ -23,7 +23,8 @@ enum CellState {
 final class MusicCell: UITableViewCell {
     
 
-    @IBOutlet weak var listenMusicButton: UIButton!
+    @IBOutlet weak var listenButtonView: UIView!
+    @IBOutlet weak var listenImageView: UIImageView!
     @IBOutlet weak var songAlbumLabel: UILabel!
     @IBOutlet weak var songArtistLabel: UILabel!
     @IBOutlet weak var songNameLabel: UILabel!
@@ -38,6 +39,7 @@ final class MusicCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setListenButton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -46,11 +48,12 @@ final class MusicCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func listenMusicButtonClick(_ sender: Any) {
-//        self.listenMusicButton.setImage(UIImage(named: "pause.circle"), for: .normal)
-        listenMusicButton.setBackgroundImage(UIImage(named: "pause.circle"), for: .normal)
-
-        cellPresenter.listenMusic()
+    private func setListenButton() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(listenMusicOnTap))
+        listenButtonView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func listenMusicOnTap() {        cellPresenter.listenMusic()
     }
 }
 
@@ -83,7 +86,7 @@ extension MusicCell: MusicCellProtocol {
             imageName = "play.circle"
         }
         DispatchQueue.main.async {
-            self.listenMusicButton.setImage(UIImage(named: imageName), for: .application)
+            self.listenImageView.image = UIImage(systemName: imageName)
         }
     }
 }
