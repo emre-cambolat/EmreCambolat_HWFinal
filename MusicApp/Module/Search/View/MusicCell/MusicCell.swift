@@ -12,23 +12,18 @@ protocol MusicCellProtocol: AnyObject {
     func setSongName(_ text: String)
     func setArtistName(_ text: String)
     func setAlbumName(_ text: String)
-    func changeListenButtonState(_ state: CellState)
-}
-
-enum CellState {
-    case listening
-    case paused
+    func resetCell()
+    var playerView: PlayerView { get }
 }
 
 final class MusicCell: UITableViewCell {
     
 
-    @IBOutlet weak var listenButtonView: UIView!
-    @IBOutlet weak var listenImageView: UIImageView!
-    @IBOutlet weak var songAlbumLabel: UILabel!
-    @IBOutlet weak var songArtistLabel: UILabel!
-    @IBOutlet weak var songNameLabel: UILabel!
-    @IBOutlet weak var songImage: UIImageView!
+    @IBOutlet private weak var listenButtonView: PlayerView!
+    @IBOutlet private weak var songAlbumLabel: UILabel!
+    @IBOutlet private weak var songArtistLabel: UILabel!
+    @IBOutlet private weak var songNameLabel: UILabel!
+    @IBOutlet private weak var songImage: UIImageView!
 
     var cellPresenter: MusicCellPresenterProtocol!{
         didSet {
@@ -39,7 +34,6 @@ final class MusicCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        setListenButton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -47,18 +41,12 @@ final class MusicCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    private func setListenButton() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(listenMusicOnTap))
-        listenButtonView.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func listenMusicOnTap() {        cellPresenter.listenMusic()
-    }
 }
 
 
 extension MusicCell: MusicCellProtocol {
+    var playerView: PlayerView { listenButtonView }
+    
     func setImage(_ image: UIImage?) {
         DispatchQueue.main.async {
             self.songImage.image = image
@@ -76,17 +64,8 @@ extension MusicCell: MusicCellProtocol {
     func setAlbumName(_ text: String) {
         songAlbumLabel.text = text
     }
-    
-    func changeListenButtonState(_ state: CellState) {
-        var imageName: String
-        switch state {
-        case .listening:
-            imageName = "pause.circle"
-        case .paused:
-            imageName = "play.circle"
-        }
-        DispatchQueue.main.async {
-            self.listenImageView.image = UIImage(systemName: imageName)
-        }
+    func resetCell() {
+        songImage.image = nil
+        playerView.changePlayerState(.paused)
     }
 }

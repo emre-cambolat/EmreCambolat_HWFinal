@@ -73,10 +73,28 @@ extension SearchViewController: UITableViewDataSource {
         
         if let music = presenter.music(at: indexPath.row) {
             cell.cellPresenter = MusicCellPresenter(view: cell, music: music)
+            cell.resetCell()
+            if music.trackID == presenter.currentListenID {
+                cell.playerView.changePlayerState(.listening)
+            } else {                
+                cell.cellPresenter.didPlayMusic = { trackID in
+                    print(trackID)
+                    let currentID = self.presenter.currentListenID
+                    self.presenter.currentListenID = trackID
+                    if currentID == trackID {
+                        cell.playerView.changePlayerState(.paused)
+                      cell.cellPresenter.load()
+                    } else {
+                        self.presenter.currentListenID = trackID
+                        tableView.reloadData()
+                    }
+                }
+            }
         }
         return cell
-    } 
+    }
 }
+
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

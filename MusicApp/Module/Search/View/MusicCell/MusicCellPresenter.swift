@@ -11,13 +11,16 @@ import AudioManager
 
 protocol MusicCellPresenterProtocol: AnyObject {
     func load()
-    func listenMusic()
+    func setPlayerViewPresenter()
+    var audioURL: String { get }
+    var trackID: Int { get }
+    var didPlayMusic: ((Int) -> Void)? { get set }
 }
 
 final class MusicCellPresenter {
     weak var view: MusicCellProtocol?
     private let music: MusicModel
-    private var cellState: CellState = .paused
+    var didPlayMusic: ((Int) -> Void)?
     
     init(
         view: MusicCellProtocol?,
@@ -25,11 +28,29 @@ final class MusicCellPresenter {
     ) {
         self.view = view
         self.music = music
+        setPlayerViewPresenter()
     }
 }
 
 
 extension MusicCellPresenter: MusicCellPresenterProtocol {
+    func setPlayerViewPresenter() {
+        guard let view else { return }
+        let presenter = PlayerViewPresenter(view: view.playerView, audioURL: audioURL, didPlayMusic: {
+            self.didPlayMusic?(self.trackID)
+        })
+        view.playerView.presenter = presenter
+    }
+    
+    var audioURL: String {
+        guard let url = music.previewURL else { return "" }
+        return url
+    }
+    
+    var trackID: Int {
+        guard let id = music.trackID else { return 0 }
+        return id
+    }
     
     func load() {
         guard let view else { return }
@@ -42,22 +63,5 @@ extension MusicCellPresenter: MusicCellPresenterProtocol {
         view.setSongName(music.trackName ?? "")
         view.setArtistName(music.artistName ?? "")
         view.setAlbumName(music.collectionName ?? "")
-    }
-    
-    func listenMusic() {
-        switch cellState {
-        case .listening:
-            cellState = .paused
-            AudioManager.shared.stopAudio()
-            break
-        case .paused:
-            guard let audioURL = music.previewURL else { return }
-            AudioManager.shared.downloadAndPlayAudio(from: audioURL) {
-                self.view?.changeListenButtonState(.paused)
-                self.cellState = .paused
-            }
-            cellState = .listening
-        }
-        view?.changeListenButtonState(cellState)
     }
 }

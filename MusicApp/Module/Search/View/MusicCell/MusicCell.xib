@@ -43,23 +43,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbN-VY-cZz">
                                 <rect key="frame" x="100" y="0.0" width="258" height="80"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mS2-0O-DbK">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="mS2-0O-DbK">
                                         <rect key="frame" x="0.0" y="8" width="258" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Beni Çok Sev" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIX-kR-B42">
-                                                <rect key="frame" x="0.0" y="0.0" width="258" height="16"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="258" height="18.666666666666668"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tarkan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4s-H0-fdh">
-                                                <rect key="frame" x="0.0" y="24" width="258" height="16"/>
+                                                <rect key="frame" x="0.0" y="22.666666666666664" width="258" height="18.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Collection: 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BG4-hq-DoP">
-                                                <rect key="frame" x="0.0" y="48" width="258" height="16"/>
+                                                <rect key="frame" x="0.0" y="45.333333333333336" width="258" height="18.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -75,22 +75,11 @@
                                     <constraint firstItem="mS2-0O-DbK" firstAttribute="leading" secondItem="ZbN-VY-cZz" secondAttribute="leading" id="hsB-o3-yU9"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ul8-xR-l5b">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ul8-xR-l5b" customClass="PlayerView" customModule="MusicApp" customModuleProvider="target">
                                 <rect key="frame" x="378" y="0.0" width="42" height="80"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="C2u-zV-Fr9">
-                                        <rect key="frame" x="3" y="23" width="36" height="34.666666666666671"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="SVp-2j-Hlh"/>
-                                            <constraint firstAttribute="width" constant="36" id="UlR-is-r3e"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="C2u-zV-Fr9" firstAttribute="centerY" secondItem="Ul8-xR-l5b" secondAttribute="centerY" id="0LP-V7-rgY"/>
                                     <constraint firstAttribute="width" constant="42" id="NCX-Ox-aei"/>
-                                    <constraint firstItem="C2u-zV-Fr9" firstAttribute="centerX" secondItem="Ul8-xR-l5b" secondAttribute="centerX" id="y4V-yn-yLm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -108,8 +97,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="listenButtonView" destination="Ul8-xR-l5b" id="bwH-Si-HGE"/>
-                <outlet property="listenImageView" destination="C2u-zV-Fr9" id="iLN-BM-XJF"/>
+                <outlet property="listenButtonView" destination="Ul8-xR-l5b" id="yF7-ta-1nc"/>
                 <outlet property="songAlbumLabel" destination="BG4-hq-DoP" id="9dE-ky-eU2"/>
                 <outlet property="songArtistLabel" destination="u4s-H0-fdh" id="r7U-uk-Xaf"/>
                 <outlet property="songImage" destination="DyG-wM-shs" id="Irj-Ej-5wA"/>
@@ -119,7 +107,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="play.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -15,6 +15,7 @@ protocol SearchPresenterProtocol: AnyObject {
     func didSelectRowAt(index: Int)
     var searchTimer: Timer? { get set }
     var searchDelay: TimeInterval { get }
+    var currentListenID: Int { get set }
 }
 
 final class SearchPresenter {
@@ -26,6 +27,7 @@ final class SearchPresenter {
     private var musics: [MusicModel]  = []
     var searchTimer: Timer?
     let searchDelay: TimeInterval = 0.3
+    var currentListenID: Int = 0
     
     init(
         view: SearchViewControllerProtocol,
