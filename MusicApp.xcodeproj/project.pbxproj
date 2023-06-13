@@ -40,6 +40,11 @@
 		0E5569B82A33E7F100ADE6C5 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5569B72A33E7F100ADE6C5 /* SplashInteractor.swift */; };
 		0E5569BA2A33E7FB00ADE6C5 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5569B92A33E7FB00ADE6C5 /* SplashRouter.swift */; };
 		0E5569BD2A33EB2800ADE6C5 /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = 0E5569BC2A33EB2800ADE6C5 /* NetworkManager */; };
+		0EBEE8792A38FD6D0018890C /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBEE8772A38FD6D0018890C /* FavoriteViewController.swift */; };
+		0EBEE87A2A38FD6D0018890C /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EBEE8782A38FD6D0018890C /* FavoriteViewController.xib */; };
+		0EBEE87C2A38FD980018890C /* FavoriteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBEE87B2A38FD980018890C /* FavoriteInteractor.swift */; };
+		0EBEE87E2A38FDAF0018890C /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBEE87D2A38FDAF0018890C /* FavoritePresenter.swift */; };
+		0EBEE8802A38FDD80018890C /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBEE87F2A38FDD80018890C /* FavoriteRouter.swift */; };
 		0EE250F62A3744B200CB3F0E /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE250F52A3744B200CB3F0E /* PlayerView.swift */; };
 		0EE250F82A3744C700CB3F0E /* PlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EE250F72A3744C700CB3F0E /* PlayerView.xib */; };
 		0EE3DBAB2A34763C00705EE2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3DBA92A34763C00705EE2 /* DetailViewController.swift */; };
@@ -100,6 +105,11 @@
 		0E5569B72A33E7F100ADE6C5 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		0E5569B92A33E7FB00ADE6C5 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 		0E5569BB2A33EAE300ADE6C5 /* NetworkManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkManager; sourceTree = "<group>"; };
+		0EBEE8772A38FD6D0018890C /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		0EBEE8782A38FD6D0018890C /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
+		0EBEE87B2A38FD980018890C /* FavoriteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteInteractor.swift; sourceTree = "<group>"; };
+		0EBEE87D2A38FDAF0018890C /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
+		0EBEE87F2A38FDD80018890C /* FavoriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
 		0EE250F52A3744B200CB3F0E /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		0EE250F72A3744C700CB3F0E /* PlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerView.xib; sourceTree = "<group>"; };
 		0EE3DBA92A34763C00705EE2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -144,8 +154,8 @@
 		0E0E69452A3630E400011B33 /* MusicCell */ = {
 			isa = PBXGroup;
 			children = (
-				0E0E694C2A36326000011B33 /* MusicCell.swift */,
 				0E0E694D2A36326000011B33 /* MusicCell.xib */,
+				0E0E694C2A36326000011B33 /* MusicCell.swift */,
 				0E0E69502A36326C00011B33 /* MusicCellPresenter.swift */,
 			);
 			path = MusicCell;
@@ -244,8 +254,8 @@
 			children = (
 				0E55699E2A33CEC300ADE6C5 /* View */,
 				0E55698C2A33747E00ADE6C5 /* Entity */,
-				0E55698D2A3374B500ADE6C5 /* SearchViewController.swift */,
 				0E55698E2A3374B500ADE6C5 /* SearchViewController.xib */,
+				0E55698D2A3374B500ADE6C5 /* SearchViewController.swift */,
 				0E5569A32A33D09200ADE6C5 /* SearchInteractor.swift */,
 				0E5569A52A33D0B400ADE6C5 /* SearchPresenter.swift */,
 				0E5569A72A33D0CC00ADE6C5 /* SearchRouter.swift */,
@@ -256,6 +266,11 @@
 		0E55698B2A3372A800ADE6C5 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				0EBEE8782A38FD6D0018890C /* FavoriteViewController.xib */,
+				0EBEE8772A38FD6D0018890C /* FavoriteViewController.swift */,
+				0EBEE87B2A38FD980018890C /* FavoriteInteractor.swift */,
+				0EBEE87D2A38FDAF0018890C /* FavoritePresenter.swift */,
+				0EBEE87F2A38FDD80018890C /* FavoriteRouter.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -333,8 +348,8 @@
 		0EE3DBA82A3475D700705EE2 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				0EE3DBA92A34763C00705EE2 /* DetailViewController.swift */,
 				0EE3DBAA2A34763C00705EE2 /* DetailViewController.xib */,
+				0EE3DBA92A34763C00705EE2 /* DetailViewController.swift */,
 				0EE3DBAD2A34764900705EE2 /* DetailInteractor.swift */,
 				0EE3DBAF2A34765500705EE2 /* DetailPresenter.swift */,
 				0EE3DBB12A34766B00705EE2 /* DetailRouter.swift */,
@@ -472,6 +487,7 @@
 				0E2FA00D2A37D05500BE7675 /* SearchResultView.xib in Resources */,
 				0E5569902A3374B500ADE6C5 /* SearchViewController.xib in Resources */,
 				0E36BAFF2A307EA100ED062F /* Main.storyboard in Resources */,
+				0EBEE87A2A38FD6D0018890C /* FavoriteViewController.xib in Resources */,
 				0E0E694F2A36326000011B33 /* MusicCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,7 +534,11 @@
 				0E5569A42A33D09200ADE6C5 /* SearchInteractor.swift in Sources */,
 				0E36BAFA2A307EA100ED062F /* SceneDelegate.swift in Sources */,
 				0E5569972A3378D200ADE6C5 /* LoadingView.swift in Sources */,
+				0EBEE87C2A38FD980018890C /* FavoriteInteractor.swift in Sources */,
 				0E2FA0082A374C5E00BE7675 /* PlayerViewPresenter.swift in Sources */,
+				0EBEE8802A38FDD80018890C /* FavoriteRouter.swift in Sources */,
+				0EBEE8792A38FD6D0018890C /* FavoriteViewController.swift in Sources */,
+				0EBEE87E2A38FDAF0018890C /* FavoritePresenter.swift in Sources */,
 				0E36BB022A307EA100ED062F /* MusicApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="MusicApp" customModuleProvider="target">
             <connections>
+                <outlet property="albumLabel" destination="0Zn-MM-pye" id="HoF-oM-Lq0"/>
+                <outlet property="albumPriceLabel" destination="21s-jh-hny" id="lCD-LO-Vdq"/>
+                <outlet property="artistLabel" destination="ojt-D0-Rk3" id="06U-Qv-oTD"/>
+                <outlet property="playerView" destination="B7q-k1-rEL" id="3Sc-9f-Jwt"/>
+                <outlet property="songImage" destination="Im4-fi-ccg" id="LSl-LQ-JkC"/>
+                <outlet property="songNameLabel" destination="1k7-v1-jvC" id="Wrj-gj-JBg"/>
+                <outlet property="songTypeLabel" destination="79B-C8-kxn" id="fyp-gR-fjk"/>
+                <outlet property="trackPriceLabel" destination="Paz-m6-JxM" id="ZYN-9S-rzr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,21 +45,12 @@
                     <color key="textColor" systemColor="systemBlueColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7q-k1-rEL">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7q-k1-rEL" customClass="PlayerView" customModule="MusicApp" customModuleProvider="target">
                     <rect key="frame" x="175.66666666666666" y="329.66666666666669" width="42" height="42"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Cep-4m-3l2">
-                            <rect key="frame" x="0.0" y="1" width="42" height="40.666666666666671"/>
-                        </imageView>
-                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="Cep-4m-3l2" firstAttribute="top" secondItem="B7q-k1-rEL" secondAttribute="top" id="72I-3t-Mq5"/>
                         <constraint firstAttribute="height" constant="42" id="FrM-3F-h9X"/>
-                        <constraint firstAttribute="bottom" secondItem="Cep-4m-3l2" secondAttribute="bottom" id="GoA-7t-csZ"/>
                         <constraint firstAttribute="width" constant="42" id="T0Q-Uo-8lJ"/>
-                        <constraint firstAttribute="trailing" secondItem="Cep-4m-3l2" secondAttribute="trailing" id="a3S-1M-PYa"/>
-                        <constraint firstItem="Cep-4m-3l2" firstAttribute="leading" secondItem="B7q-k1-rEL" secondAttribute="leading" id="mMb-yx-HBa"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beni Çok Sev" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1k7-v1-jvC">
@@ -106,7 +105,6 @@
         </view>
     </objects>
     <resources>
-        <image name="play.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

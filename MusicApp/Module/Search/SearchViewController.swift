@@ -32,6 +32,7 @@ final class SearchViewController: UIViewController, LoadingShowable {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
+        navigationItem.title = "iTunes Search"
     }
     
 }
@@ -62,7 +63,6 @@ extension SearchViewController: SearchViewControllerProtocol {
         searchResultView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         searchResultView.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
         searchResultView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-   
     }
     
     func setupTableView() {

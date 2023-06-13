@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SDWebImage
 import AudioManager
+import SDWebImage
 
 protocol MusicCellPresenterProtocol: AnyObject {
     func load()

@@ -37,8 +37,17 @@ extension SplashRouter: SplashRouterProtocol {
         case .searchScreen:
             guard let window = viewController?.view.window else { return }
             let searchVC = SearchRouter.createModule()
-            let navigateController = UINavigationController(rootViewController: searchVC)
-            window.rootViewController = navigateController
+            let searchNavigateController = UINavigationController(rootViewController: searchVC)
+            searchNavigateController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+            
+            let detailVC = DetailRouter.createModule()
+            let detailNavigateController = UINavigationController(rootViewController: detailVC)
+            detailNavigateController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+            
+            let tabBarController = UITabBarController()
+            tabBarController.viewControllers = [searchNavigateController, detailNavigateController]
+            
+            window.rootViewController = tabBarController
         }
     }
 }

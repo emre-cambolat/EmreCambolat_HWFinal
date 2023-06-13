@@ -45,7 +45,6 @@ extension PlayerViewPresenter: PlayerViewPresenterProtocol {
             playerState = .listening
             AudioManager.shared.downloadAndPlayAudio(from: audioURL) {
                 self.playerState = .paused
-                print("Müzik durdu")
             }
         }
     }
