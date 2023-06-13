@@ -13,6 +13,7 @@ protocol SearchPresenterProtocol: AnyObject {
     func numberOfItem() -> Int
     func music(at index: Int) -> MusicModel?
     func didSelectRowAt(index: Int)
+    func resetSearch()
     var searchTimer: Timer? { get set }
     var searchDelay: TimeInterval { get }
     var currentListenID: Int { get set }
@@ -43,6 +44,7 @@ final class SearchPresenter {
 extension SearchPresenter: SearchPresenterProtocol {
     func viewDidLoad() {
         view.setupTableView()
+        view.setSearchView()
     }
     
     func numberOfItem() -> Int { musics.count }
@@ -59,6 +61,13 @@ extension SearchPresenter: SearchPresenterProtocol {
         interactor.fetchMusic(term)
     }
     
+    func resetSearch() {
+        musics.removeAll()
+        view.reloadData()
+        view.updateSearchView(.search)
+        view.showSearchView()
+    }
+    
 }
 
 extension SearchPresenter: SearchInteractorOutputProtocol {
@@ -66,10 +75,18 @@ extension SearchPresenter: SearchInteractorOutputProtocol {
         view.hideLoadingView()
         guard let result else {
             view.showAlert("An error occurred while sending the request")
+            view.updateSearchView(.noResult)
+            view.showSearchView()
             return
         }
         musics.removeAll()
         musics = result.results
         view.reloadData()
+        if musics.isEmpty {
+            view.updateSearchView(.noResult)
+            view.showSearchView()
+        } else {
+            view.hideSearchView()
+        }
     }
 }

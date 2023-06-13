@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2w1-g3-YfX">
-                        <rect key="frame" x="8" y="8" width="420" height="80"/>
+                        <rect key="frame" x="16" y="8" width="404" height="80"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4f-96-e1a">
                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -41,25 +41,25 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbN-VY-cZz">
-                                <rect key="frame" x="100" y="0.0" width="258" height="80"/>
+                                <rect key="frame" x="100" y="0.0" width="242" height="80"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="mS2-0O-DbK">
-                                        <rect key="frame" x="0.0" y="8" width="258" height="64"/>
+                                        <rect key="frame" x="0.0" y="8" width="242" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Beni Çok Sev" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIX-kR-B42">
-                                                <rect key="frame" x="0.0" y="0.0" width="258" height="18.666666666666668"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="242" height="18.666666666666668"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tarkan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4s-H0-fdh">
-                                                <rect key="frame" x="0.0" y="22.666666666666664" width="258" height="18.666666666666664"/>
+                                                <rect key="frame" x="0.0" y="22.666666666666664" width="242" height="18.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Collection: 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BG4-hq-DoP">
-                                                <rect key="frame" x="0.0" y="45.333333333333336" width="258" height="18.666666666666664"/>
+                                                <rect key="frame" x="0.0" y="45.333333333333336" width="242" height="18.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ul8-xR-l5b" customClass="PlayerView" customModule="MusicApp" customModuleProvider="target">
-                                <rect key="frame" x="378" y="0.0" width="42" height="80"/>
+                                <rect key="frame" x="362" y="0.0" width="42" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="NCX-Ox-aei"/>
@@ -89,9 +89,9 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="2w1-g3-YfX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ACv-OO-0YB"/>
+                    <constraint firstItem="2w1-g3-YfX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ACv-OO-0YB"/>
                     <constraint firstAttribute="bottom" secondItem="2w1-g3-YfX" secondAttribute="bottom" constant="8" id="OKQ-NR-T20"/>
-                    <constraint firstAttribute="trailing" secondItem="2w1-g3-YfX" secondAttribute="trailing" constant="8" id="VsT-Wg-9AT"/>
+                    <constraint firstAttribute="trailing" secondItem="2w1-g3-YfX" secondAttribute="trailing" constant="16" id="VsT-Wg-9AT"/>
                     <constraint firstItem="2w1-g3-YfX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="boS-cR-3dx"/>
                 </constraints>
             </tableViewCellContentView>

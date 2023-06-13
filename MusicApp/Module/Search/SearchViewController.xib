@@ -21,8 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="ywP-gL-hCh">
-                    <rect key="frame" x="8" y="67" width="377" height="56"/>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="ywP-gL-hCh">
+                    <rect key="frame" x="8" y="59" width="377" height="56"/>
                     <textInputTraits key="textInputTraits"/>
                     <scopeButtonTitles>
                         <string>Title</string>
@@ -33,7 +33,7 @@
                     </connections>
                 </searchBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Sm8-t8-BkA">
-                    <rect key="frame" x="0.0" y="131" width="393" height="687"/>
+                    <rect key="frame" x="0.0" y="115" width="393" height="703"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
@@ -42,8 +42,8 @@
             <constraints>
                 <constraint firstItem="Sm8-t8-BkA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0Ty-RZ-5Ll"/>
                 <constraint firstItem="ywP-gL-hCh" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-8" id="Dwo-Ji-up2"/>
-                <constraint firstItem="Sm8-t8-BkA" firstAttribute="top" secondItem="ywP-gL-hCh" secondAttribute="bottom" constant="8" id="F9v-Ut-2j2"/>
-                <constraint firstItem="ywP-gL-hCh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="Jhg-Ox-UOC"/>
+                <constraint firstItem="Sm8-t8-BkA" firstAttribute="top" secondItem="ywP-gL-hCh" secondAttribute="bottom" id="F9v-Ut-2j2"/>
+                <constraint firstItem="ywP-gL-hCh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Jhg-Ox-UOC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Sm8-t8-BkA" secondAttribute="bottom" id="LN7-0d-Qak"/>
                 <constraint firstItem="ywP-gL-hCh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="TvR-ad-X9p"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Sm8-t8-BkA" secondAttribute="trailing" id="lB3-uW-PKq"/>

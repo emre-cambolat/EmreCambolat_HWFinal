@@ -15,24 +15,56 @@ protocol SearchViewControllerProtocol: AnyObject {
     func showAlert(_ message: String)
     func showLoadingView()
     func hideLoadingView()
+    func showSearchView()
+    func hideSearchView()
+    func setSearchView()
+    func updateSearchView(_ type: SearchResultViewType)
 }
 
 final class SearchViewController: UIViewController, LoadingShowable {
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
+//    @IBOutlet private weak var searchResultView: SearchResultView!
     
     var presenter: SearchPresenterProtocol!
+    let searchResultView = SearchResultView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         presenter.viewDidLoad()
     }
     
 }
 
 extension SearchViewController: SearchViewControllerProtocol {
+    func updateSearchView(_ type: SearchResultViewType) {
+        searchResultView.changeType(type)
+    }
+    
+    func showSearchView() {
+        searchResultView.isHidden = false
+    }
+    
+    func hideSearchView() {
+        searchResultView.isHidden = true
+    }
+    
+    func setSearchView() {
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+
+        searchResultView.backgroundColor = .red
+        searchResultView.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(searchResultView)
+        
+        searchResultView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        searchResultView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        searchResultView.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
+        searchResultView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+   
+    }
+    
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -76,14 +108,14 @@ extension SearchViewController: UITableViewDataSource {
             cell.resetCell()
             if music.trackID == presenter.currentListenID {
                 cell.playerView.changePlayerState(.listening)
-            } else {                
+            } else {
                 cell.cellPresenter.didPlayMusic = { trackID in
                     print(trackID)
                     let currentID = self.presenter.currentListenID
                     self.presenter.currentListenID = trackID
                     if currentID == trackID {
                         cell.playerView.changePlayerState(.paused)
-                      cell.cellPresenter.load()
+                        cell.cellPresenter.load()
                     } else {
                         self.presenter.currentListenID = trackID
                         tableView.reloadData()
@@ -104,8 +136,11 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            presenter.resetSearch()
+            return
+        }
         presenter.searchTimer?.invalidate()
-        
         presenter.searchTimer = Timer.scheduledTimer(withTimeInterval: presenter.searchDelay, repeats: false, block: { [weak self] _ in
             print("istek atıldı")
             self?.presenter.fetchMusic(searchText)
