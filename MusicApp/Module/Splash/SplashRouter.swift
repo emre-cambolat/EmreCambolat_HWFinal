@@ -5,7 +5,6 @@
 //  Created by Emre Cambolat on 10.06.2023.
 //
 
-import Foundation
 import UIKit
 
 enum SplashRoute {
@@ -40,12 +39,12 @@ extension SplashRouter: SplashRouterProtocol {
             let searchNavigateController = UINavigationController(rootViewController: searchVC)
             searchNavigateController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
             
-            let detailVC = DetailRouter.createModule()
-            let detailNavigateController = UINavigationController(rootViewController: detailVC)
-            detailNavigateController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+            let favoritesVC = FavoriteRouter.createModule()
+            let favoritesNavigateController = UINavigationController(rootViewController: favoritesVC)
+            favoritesNavigateController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
             
             let tabBarController = UITabBarController()
-            tabBarController.viewControllers = [searchNavigateController, detailNavigateController]
+            tabBarController.viewControllers = [searchNavigateController, favoritesNavigateController]
             
             window.rootViewController = tabBarController
         }

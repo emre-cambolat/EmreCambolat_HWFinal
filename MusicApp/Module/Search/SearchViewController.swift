@@ -15,54 +15,55 @@ protocol SearchViewControllerProtocol: AnyObject {
     func showAlert(_ message: String)
     func showLoadingView()
     func hideLoadingView()
-    func showSearchView()
-    func hideSearchView()
-    func setSearchView()
-    func updateSearchView(_ type: SearchResultViewType)
+    func showEmptyView()
+    func hideEmptyView()
+    func setEmptyView()
+    func updateEmptyView(_ type: EmptyViewType)
 }
 
 final class SearchViewController: UIViewController, LoadingShowable {
     
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
-//    @IBOutlet private weak var searchResultView: SearchResultView!
     
     var presenter: SearchPresenterProtocol!
-    let searchResultView = SearchResultView()
+    private let emptyView = EmptyView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
         navigationItem.title = "iTunes Search"
     }
     
+    private func hideKeyboard(){
+        view.endEditing(true)
+    }
+    
 }
 
 extension SearchViewController: SearchViewControllerProtocol {
-    func updateSearchView(_ type: SearchResultViewType) {
-        searchResultView.changeType(type)
+    func updateEmptyView(_ type: EmptyViewType) {
+        emptyView.changeType(type)
     }
     
-    func showSearchView() {
-        searchResultView.isHidden = false
+    func showEmptyView() {
+        emptyView.isHidden = false
     }
     
-    func hideSearchView() {
-        searchResultView.isHidden = true
+    func hideEmptyView() {
+        emptyView.isHidden = true
     }
     
-    func setSearchView() {
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
-
-        searchResultView.backgroundColor = .red
-        searchResultView.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(searchResultView)
+    func setEmptyView() {
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
         
-        searchResultView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        searchResultView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        searchResultView.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
-        searchResultView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        view.addSubview(emptyView)
+        
+        emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        emptyView.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
+        emptyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        emptyView.changeType(.search)
     }
     
     func setupTableView() {
@@ -81,9 +82,7 @@ extension SearchViewController: SearchViewControllerProtocol {
         }
     }
     
-    func showAlert(_ message: String) {
-        showToast(message)
-    }
+    func showAlert(_ message: String) { showToast(message) }
     
     func showLoadingView() {
         showLoading()
@@ -95,9 +94,7 @@ extension SearchViewController: SearchViewControllerProtocol {
 }
 
 extension SearchViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfItem()
-    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { presenter.numberOfItem }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(MusicCell.self, for: indexPath)
@@ -130,7 +127,13 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath) as! MusicCell
+        selectedCell.playerView.changePlayerState(.paused)
         presenter.didSelectRowAt(index: indexPath.row)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        hideKeyboard()
     }
 }
 
@@ -138,16 +141,17 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             presenter.resetSearch()
-            return
+        } else {
+            presenter.searchTimer?.invalidate()
+            presenter.searchTimer = Timer.scheduledTimer(withTimeInterval: presenter.searchDelay, repeats: false, block: { [weak self] _ in
+                print("istek atıldı")
+                self?.presenter.fetchMusic(searchText)
+            })
         }
-        presenter.searchTimer?.invalidate()
-        presenter.searchTimer = Timer.scheduledTimer(withTimeInterval: presenter.searchDelay, repeats: false, block: { [weak self] _ in
-            print("istek atıldı")
-            self?.presenter.fetchMusic(searchText)
-        })
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("search button clicked")
+        presenter.fetchMusic(searchBar.text ?? "")
+        hideKeyboard()
     }
 }

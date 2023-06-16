@@ -5,7 +5,6 @@
 //  Created by Emre Cambolat on 10.06.2023.
 //
 
-import Foundation
 import NetworkManager
 
 protocol SplashInteractorProtocol {

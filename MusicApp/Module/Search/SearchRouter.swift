@@ -5,9 +5,6 @@
 //  Created by Emre Cambolat on 10.06.2023.
 //
 
-import Foundation
-
-
 protocol SearchRouterProtocol {
     func navigate(_ route: SearchRoutes)
 }
@@ -23,7 +20,9 @@ final class SearchRouter {
         let view = SearchViewController()
         let interactor = SearchInteractor()
         let router = SearchRouter()
-        let presenter = SearchPresenter(view: view, router: router, interactor: interactor)
+        let presenter = SearchPresenter(view: view,
+                                        router: router,
+                                        interactor: interactor)
         view.presenter = presenter
         interactor.output = presenter
         router.viewController = view

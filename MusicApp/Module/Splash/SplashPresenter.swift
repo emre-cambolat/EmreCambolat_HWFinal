@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol SplashPresenterProtocol: AnyObject {
     func viewDidAppear()
 }

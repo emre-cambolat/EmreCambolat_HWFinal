@@ -10,10 +10,10 @@ import Foundation
 protocol SearchPresenterProtocol: AnyObject {
     func viewDidLoad()
     func fetchMusic(_ term: String)
-    func numberOfItem() -> Int
     func music(at index: Int) -> MusicModel?
     func didSelectRowAt(index: Int)
     func resetSearch()
+    var numberOfItem: Int { get }
     var searchTimer: Timer? { get set }
     var searchDelay: TimeInterval { get }
     var currentListenID: Int { get set }
@@ -44,10 +44,10 @@ final class SearchPresenter {
 extension SearchPresenter: SearchPresenterProtocol {
     func viewDidLoad() {
         view.setupTableView()
-        view.setSearchView()
+        view.setEmptyView()
     }
     
-    func numberOfItem() -> Int { musics.count }
+    var numberOfItem: Int { musics.count }
     
     func music(at index: Int) -> MusicModel? { musics[index] }
     
@@ -57,15 +57,21 @@ extension SearchPresenter: SearchPresenterProtocol {
     }
     
     func fetchMusic(_ term: String) {
+        guard !term.isEmpty else {
+            view.showAlert("Please enter a word")
+            return
+        }
+        currentListenID = 0
         view.showLoadingView()
         interactor.fetchMusic(term)
     }
     
     func resetSearch() {
         musics.removeAll()
+        currentListenID = 0
         view.reloadData()
-        view.updateSearchView(.search)
-        view.showSearchView()
+        view.updateEmptyView(.search)
+        view.showEmptyView()
     }
     
 }
@@ -75,18 +81,18 @@ extension SearchPresenter: SearchInteractorOutputProtocol {
         view.hideLoadingView()
         guard let result else {
             view.showAlert("An error occurred while sending the request")
-            view.updateSearchView(.noResult)
-            view.showSearchView()
+            view.updateEmptyView(.noResult)
+            view.showEmptyView()
             return
         }
         musics.removeAll()
         musics = result.results
         view.reloadData()
         if musics.isEmpty {
-            view.updateSearchView(.noResult)
-            view.showSearchView()
+            view.updateEmptyView(.noResult)
+            view.showEmptyView()
         } else {
-            view.hideSearchView()
+            view.hideEmptyView()
         }
     }
 }

@@ -17,9 +17,9 @@ enum PlayerState {
     case paused
 }
 
-class PlayerView: UIView {
+final class PlayerView: UIView {
 
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var imageView: UIImageView!
     
     private let nibName = String(describing: PlayerView.self)
     private var contentView:UIView?

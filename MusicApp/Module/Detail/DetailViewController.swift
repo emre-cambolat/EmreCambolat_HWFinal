@@ -17,6 +17,15 @@ protocol DetailViewControllerProtocol: AnyObject {
     func setSongTypeLabel(_ text: String)
     func setTrackPriceLabel(_ text: String)
     func setAlbumPriceLabel(_ text: String)
+    func changeFavoriteState(_ state: FavoriteState)
+    func setFavoriteButton()
+    func showMessage(_ message: String)
+    func showRemoveFavoriteAlert()
+}
+
+enum FavoriteState {
+    case favorite
+    case unFavorite
 }
 
 final class DetailViewController: UIViewController {
@@ -32,25 +41,43 @@ final class DetailViewController: UIViewController {
     
     var presenter: DetailPresenterProtocol!
     var source: MusicModel?
+    private var favoriteButton: UIBarButtonItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        presenter.viewDidload()
-        
-        let settingsButton = UIBarButtonItem(image: UIImage(systemName: "play"), style: .plain, target: self, action: #selector(settingsButtonTapped))
-            navigationItem.rightBarButtonItem = settingsButton
-        
-        navigationItem.rightBarButtonItem = settingsButton
+        presenter.viewDidLoad()
     }
     
-    @objc func settingsButtonTapped() {
-        print("Kaçaoouuvvvvv")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidLoad()
+    }
+    
+    @objc func favoriteButtonTap() {
+        presenter.tapFavorite()
     }
 
 }
 
 extension DetailViewController: DetailViewControllerProtocol {
+    
+    func showMessage(_ message: String) { showToast(message) }
+    
+    func showRemoveFavoriteAlert() {
+        let alertController = UIAlertController(title: "Are you sure?", message: "This song will be removed from your favorites", preferredStyle: .alert)
+            
+            let removeAction = UIAlertAction(title: "Remove", style: .destructive) { (action) in
+                self.presenter.removeFavorite()
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            
+            alertController.addAction(removeAction)
+            alertController.addAction(cancelAction)
+
+            present(alertController, animated: true, completion: nil)
+    }
+    
     var getPlayerView: PlayerView { playerView }
     
     var getMusic: MusicModel? { source }
@@ -82,7 +109,8 @@ extension DetailViewController: DetailViewControllerProtocol {
             trackPriceLabel.isHidden = true
             return
         }
-        trackPriceLabel.text = "Track Rrice: \(text)"
+        let currency = presenter.getCurrency
+        trackPriceLabel.text = "Track Rrice: \(text) \(currency)"
     }
     
     func setAlbumPriceLabel(_ text: String) {
@@ -90,6 +118,23 @@ extension DetailViewController: DetailViewControllerProtocol {
             albumPriceLabel.isHidden = true
             return
         }
-        albumPriceLabel.text = "Collection Price: \(text)"
+        let currency = presenter.getCurrency
+        albumPriceLabel.text = "Collection Price: \(text) \(currency)"
+    }
+    
+    func changeFavoriteState(_ state: FavoriteState) {
+        var imageName: String
+        switch state {
+        case .favorite:
+            imageName = "star.fill"
+        case .unFavorite:
+            imageName = "star"
+        }
+        favoriteButton?.image = UIImage(systemName: imageName)
+    }
+    
+    func setFavoriteButton() {
+        favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteButtonTap))
+        navigationItem.rightBarButtonItem = favoriteButton
     }
 }

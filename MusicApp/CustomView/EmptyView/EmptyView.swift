@@ -1,5 +1,5 @@
 //
-//  SearchResultView.swift
+//  EmptyView.swift
 //  MusicApp
 //
 //  Created by Emre Cambolat on 13.06.2023.
@@ -7,17 +7,18 @@
 
 import UIKit
 
-enum SearchResultViewType {
+enum EmptyViewType {
     case search
     case noResult
+    case addFavorite
 }
 
-protocol SearchResultViewProtocol: AnyObject {
-    func changeType(_ type: SearchResultViewType)
+protocol EmptyViewProtocol: AnyObject {
+    func changeType(_ type: EmptyViewType)
     func setOutlets(image: String, content: String)
 }
 
-final class SearchResultView: UIView {
+final class EmptyView: UIView {
 
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var contentLabel: UILabel!
@@ -33,7 +34,7 @@ final class SearchResultView: UIView {
     }
 
     private func commonInit() {
-        let bundle = String(describing: SearchResultView.self)
+        let bundle = String(describing: EmptyView.self)
         if let view = Bundle.main.loadNibNamed(bundle, owner: self, options: nil)?.first as? UIView {
             addSubview(view)
             view.frame = bounds
@@ -43,8 +44,8 @@ final class SearchResultView: UIView {
     
 }
 
-extension SearchResultView: SearchResultViewProtocol {
-    func changeType(_ type: SearchResultViewType) {
+extension EmptyView: EmptyViewProtocol {
+    func changeType(_ type: EmptyViewType) {
         var imagePath: String
         var contentMessage: String
         switch type {
@@ -54,6 +55,9 @@ extension SearchResultView: SearchResultViewProtocol {
         case .noResult:
             imagePath = "no_result_bg"
             contentMessage = "No result found"
+        case .addFavorite:
+            imagePath = "favorite_bg"
+            contentMessage = "Add songs as favorites"
         }
         
         setOutlets(image: imagePath, content: contentMessage)

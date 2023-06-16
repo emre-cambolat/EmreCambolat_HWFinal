@@ -1,30 +1,29 @@
 //
-//  MusicCell.swift
+//  FavoriteCell.swift
 //  MusicApp
 //
-//  Created by Emre Cambolat on 11.06.2023.
+//  Created by Emre Cambolat on 15.06.2023.
 //
 
 import UIKit
 
-protocol MusicCellProtocol: AnyObject {
+protocol FavoriteCellProtocol: AnyObject {
     func setImage(_ image: UIImage?)
     func setSongName(_ text: String)
     func setArtistName(_ text: String)
     func setAlbumName(_ text: String)
-    func resetCell()
-    var playerView: PlayerView { get }
+    func setFavoriteTap()
 }
 
-final class MusicCell: UITableViewCell {
+class FavoriteCell: UITableViewCell {
     
-    @IBOutlet private weak var listenButtonView: PlayerView!
     @IBOutlet private weak var songAlbumLabel: UILabel!
     @IBOutlet private weak var songArtistLabel: UILabel!
     @IBOutlet private weak var songNameLabel: UILabel!
     @IBOutlet private weak var songImage: UIImageView!
+    @IBOutlet private weak var favoriteImageView: UIView!
     
-    var cellPresenter: MusicCellPresenterProtocol!{
+    var cellPresenter: FavoriteCellPresenterProtocol!{
         didSet {
             cellPresenter.load()
         }
@@ -40,9 +39,15 @@ final class MusicCell: UITableViewCell {
     }
 }
 
-
-extension MusicCell: MusicCellProtocol {
-    var playerView: PlayerView { listenButtonView }
+extension FavoriteCell: FavoriteCellProtocol {
+    func setFavoriteTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(favoriteOnTap))
+        favoriteImageView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func favoriteOnTap() {
+        cellPresenter.favoriteImageViewOnTap()
+    }
     
     func setImage(_ image: UIImage?) {
         DispatchQueue.main.async {
@@ -60,9 +65,5 @@ extension MusicCell: MusicCellProtocol {
     
     func setAlbumName(_ text: String) {
         songAlbumLabel.text = text
-    }
-    func resetCell() {
-        songImage.image = nil
-        playerView.changePlayerState(.paused)
     }
 }
