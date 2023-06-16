@@ -7,12 +7,14 @@
 
 import Foundation
 
+// MARK: - Protools
 protocol SplashPresenterProtocol: AnyObject {
     func viewDidAppear()
 }
 
 final class SplashPresenter: SplashPresenterProtocol {
-   
+    
+    // MARK: - Variables
     unowned var view: SplashViewControllerProtocol!
     let router: SplashRouterProtocol!
     let interactor: SplashInteractorProtocol!

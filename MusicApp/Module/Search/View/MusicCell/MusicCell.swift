@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Protocols
 protocol MusicCellProtocol: AnyObject {
     func setImage(_ image: UIImage?)
     func setSongName(_ text: String)
@@ -18,18 +19,21 @@ protocol MusicCellProtocol: AnyObject {
 
 final class MusicCell: UITableViewCell {
     
+    // MARK: - IBOutlets
     @IBOutlet private weak var listenButtonView: PlayerView!
     @IBOutlet private weak var songAlbumLabel: UILabel!
     @IBOutlet private weak var songArtistLabel: UILabel!
     @IBOutlet private weak var songNameLabel: UILabel!
     @IBOutlet private weak var songImage: UIImageView!
     
+    // MARK: - Variables
     var cellPresenter: MusicCellPresenterProtocol!{
         didSet {
             cellPresenter.load()
         }
     }
     
+    // MARK: - Override Functions
     override func awakeFromNib() {
         super.awakeFromNib()
         self.isAccessibilityElement = true

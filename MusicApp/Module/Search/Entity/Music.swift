@@ -21,7 +21,7 @@ struct MusicModel: Decodable {
     let collectionPrice, trackPrice: Double?
     let primaryGenreName: String?
     let currency: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case collectionID = "collectionId"
         case trackID = "trackId"

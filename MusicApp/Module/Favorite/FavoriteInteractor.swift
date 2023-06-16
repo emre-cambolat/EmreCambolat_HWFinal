@@ -5,6 +5,7 @@
 //  Created by Emre Cambolat on 13.06.2023.
 //
 
+// MARK: - Protocols
 protocol FavoriteInteractorProtocol: AnyObject {
     func fetchAllModel()
     func deleteModel(with trackID: Int)
@@ -18,6 +19,8 @@ protocol FavoriteInteractorOutputProtocol: AnyObject {
 }
 
 final class FavoriteInteractor {
+    
+    // MARK: - Variables
     var output: FavoriteInteractorOutputProtocol?
     private let favoriteManager = FavoriteManager.shared
 }

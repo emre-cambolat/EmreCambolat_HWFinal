@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Protocols
 protocol LoadingShowable where Self: UIViewController {
     func showLoading()
     func hideLoading()

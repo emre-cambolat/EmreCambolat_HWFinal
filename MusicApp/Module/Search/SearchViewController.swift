@@ -8,6 +8,7 @@
 import UIKit
 import UIKitExtensions
 
+// MARK: - Protocols
 protocol SearchViewControllerProtocol: AnyObject {
     func setupTableView()
     func setupSearchBar()
@@ -23,12 +24,15 @@ protocol SearchViewControllerProtocol: AnyObject {
 
 final class SearchViewController: UIViewController, LoadingShowable {
     
+    // MARK: - IBOutlets
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     
+    // MARK: - Variables
     var presenter: SearchPresenterProtocol!
     private let emptyView = EmptyView()
     
+    // MARK: - Override Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
@@ -39,10 +43,10 @@ final class SearchViewController: UIViewController, LoadingShowable {
         presenter.stopMusic()
     }
     
+    // MARK: - Functions
     private func hideKeyboard(){
         view.endEditing(true)
     }
-    
 }
 
 extension SearchViewController: SearchViewControllerProtocol {

@@ -7,6 +7,7 @@
 
 import NetworkManager
 
+// MARK: - Protocols
 protocol SplashInteractorProtocol {
     func checkInternetConnection()
 }
@@ -16,6 +17,8 @@ protocol SplashInteractorOutputProtocol {
 }
 
 final class SplashInteractor {
+    
+    // MARK: - Variables
     var output: SplashInteractorOutputProtocol?
 }
 

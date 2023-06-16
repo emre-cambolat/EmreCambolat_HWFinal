@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Protocols
 protocol FavoriteCellProtocol: AnyObject {
     func setImage(_ image: UIImage?)
     func setSongName(_ text: String)
@@ -17,18 +18,21 @@ protocol FavoriteCellProtocol: AnyObject {
 
 class FavoriteCell: UITableViewCell {
     
+    // MARK: - IBOutlets
     @IBOutlet private weak var songAlbumLabel: UILabel!
     @IBOutlet private weak var songArtistLabel: UILabel!
     @IBOutlet private weak var songNameLabel: UILabel!
     @IBOutlet private weak var songImage: UIImageView!
     @IBOutlet private weak var favoriteImageView: UIView!
     
+    // MARK: - Variables
     var cellPresenter: FavoriteCellPresenterProtocol!{
         didSet {
             cellPresenter.load()
         }
     }
     
+    // MARK: - Override Functions
     override func awakeFromNib() {
         super.awakeFromNib()
         self.isAccessibilityElement = true

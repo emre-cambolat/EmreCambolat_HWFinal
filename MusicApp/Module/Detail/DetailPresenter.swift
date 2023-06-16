@@ -8,6 +8,7 @@
 import SDWebImage
 import AudioManager
 
+// MARK: - Protocols
 protocol DetailPresenterProtocol {
     func viewDidLoad()
     func tapFavorite()
@@ -18,6 +19,8 @@ protocol DetailPresenterProtocol {
 }
 
 final class DetailPresenter{
+    
+    // MARK: - Variables
     unowned var view: DetailViewControllerProtocol
     let router: DetailRouterProtocol!
     let interactor: DetailInteractorProtocol!

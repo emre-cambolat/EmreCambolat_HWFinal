@@ -7,6 +7,7 @@
 
 import Alamofire
 
+// MARK: - Protocols
 protocol SearchInteractorProtocol: AnyObject {
     func fetchMusic(_ term: String)
 }
@@ -16,6 +17,8 @@ protocol SearchInteractorOutputProtocol {
 }
 
 final class SearchInteractor {
+    
+    // MARK: - Variables
     var output: SearchInteractorOutputProtocol?
 }
 

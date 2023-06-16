@@ -5,6 +5,7 @@
 //  Created by Emre Cambolat on 13.06.2023.
 //
 
+// MARK: - Protocols
 protocol FavoriteRouterProtocol: AnyObject {
     func navigate(_ route: FavoriteRoutes)
 }
@@ -15,15 +16,21 @@ enum FavoriteRoutes {
 }
 
 final class FavoriteRouter {
+    
+    // MARK: - Variables
     weak var viewController: FavoriteViewController?
     
+    // MARK: - Functions
     static func createModule() -> FavoriteViewController {
         let view = FavoriteViewController()
         let interactor = FavoriteInteractor()
         let router = FavoriteRouter()
-        let presenter = FavoritePresenter(view: view,
-                                        interactor: interactor,
-                                        router: router)
+        let presenter = FavoritePresenter(
+            view: view,
+            interactor: interactor,
+            router: router
+        )
+        
         view.presenter = presenter
         interactor.output = presenter
         router.viewController = view

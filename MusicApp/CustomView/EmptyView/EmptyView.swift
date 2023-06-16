@@ -13,16 +13,19 @@ enum EmptyViewType {
     case addFavorite
 }
 
+// MARK: - Protocols
 protocol EmptyViewProtocol: AnyObject {
     func changeType(_ type: EmptyViewType)
     func setOutlets(image: String, content: String)
 }
 
 final class EmptyView: UIView {
-
+    
+    // MARK: - IBOutlets
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var contentLabel: UILabel!
     
+    // MARK: - Override Functions
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -33,6 +36,7 @@ final class EmptyView: UIView {
         commonInit()
     }
 
+    // MARK: - Functions
     private func commonInit() {
         let bundle = String(describing: EmptyView.self)
         if let view = Bundle.main.loadNibNamed(bundle, owner: self, options: nil)?.first as? UIView {

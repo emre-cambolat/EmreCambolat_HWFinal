@@ -8,6 +8,7 @@
 import Foundation
 import AudioManager
 
+// MARK: - Protocols
 protocol SearchPresenterProtocol: AnyObject {
     func viewDidLoad()
     func fetchMusic(_ term: String)
@@ -23,10 +24,10 @@ protocol SearchPresenterProtocol: AnyObject {
 
 final class SearchPresenter {
     
+    // MARK: - Variables
     unowned var view: SearchViewControllerProtocol
     let router: SearchRouterProtocol!
     let interactor: SearchInteractorProtocol!
-    
     private var musics: [MusicModel]  = []
     var searchTimer: Timer?
     let searchDelay: TimeInterval = 0.3

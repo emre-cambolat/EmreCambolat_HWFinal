@@ -5,6 +5,7 @@
 //  Created by Emre Cambolat on 10.06.2023.
 //
 
+// MARK: - Protocols
 protocol DetailInteractorProtocol {
     func addModel(_ model: MusicModel)
     func checkIfTrackIdExists(trackID: Int)
@@ -18,6 +19,8 @@ protocol DetailInteractorOutputProtocol {
 }
 
 final class DetailInteractor {
+    
+    // MARK: - Variables
     var output: DetailInteractorOutputProtocol?
     private let favoriteManager = FavoriteManager.shared
 }

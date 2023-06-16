@@ -8,6 +8,7 @@
 import Foundation
 import SDWebImage
 
+// MARK: - Protocols
 protocol FavoriteCellPresenterProtocol {
     func load()
     func favoriteImageViewOnTap()
@@ -15,6 +16,8 @@ protocol FavoriteCellPresenterProtocol {
 }
 
 final class FavoriteCellPresenter {
+    
+    // MARK: - Variables
     weak var view: FavoriteCellProtocol?
     private let music: MusicModel
     var didFavoriteTap: ((Int) -> Void)?

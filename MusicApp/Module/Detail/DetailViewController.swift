@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Protocols
 protocol DetailViewControllerProtocol: AnyObject {
     var getMusic: MusicModel? { get }
     var getPlayerView: PlayerView { get }
@@ -30,6 +31,7 @@ enum FavoriteState {
 
 final class DetailViewController: UIViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet private weak var songImage: UIImageView!
     @IBOutlet private weak var artistLabel: UILabel!
     @IBOutlet private weak var albumLabel: UILabel!
@@ -39,10 +41,12 @@ final class DetailViewController: UIViewController {
     @IBOutlet private weak var trackPriceLabel: UILabel!
     @IBOutlet private weak var albumPriceLabel: UILabel!
     
+    // MARK: - Variables
     var presenter: DetailPresenterProtocol!
     var source: MusicModel?
     private var favoriteButton: UIBarButtonItem?
     
+    // MARK: - Override Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
@@ -57,6 +61,7 @@ final class DetailViewController: UIViewController {
         presenter.stopMusic()
     }
     
+    // MARK: - Functions
     @objc func favoriteButtonTap() {
         presenter.tapFavorite()
     }

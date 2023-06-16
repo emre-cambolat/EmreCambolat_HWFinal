@@ -8,6 +8,7 @@
 
 import CoreData
 
+// MARK: - Protocols
 protocol FavoriteManagerProtocol {
     func checkIfTrackIdExists(trackID: Int) -> Bool
     func addModel(_ model: MusicModel) -> Bool
@@ -18,6 +19,7 @@ protocol FavoriteManagerProtocol {
 
 final class FavoriteManager: FavoriteManagerProtocol {
     
+    // MARK: - Variables
     static let shared = FavoriteManager()
     private let entityName: String = "FavoriteMusic"
     private let coreDataName: String = "MusicApp"
@@ -38,6 +40,7 @@ final class FavoriteManager: FavoriteManagerProtocol {
         fetchData()
     }
     
+    // MARK: - Functions
     private func saveContext() -> Bool {
         let context = persistentContainer.viewContext
         

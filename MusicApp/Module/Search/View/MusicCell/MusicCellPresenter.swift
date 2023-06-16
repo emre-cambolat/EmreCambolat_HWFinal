@@ -8,6 +8,7 @@
 import AudioManager
 import SDWebImage
 
+// MARK: - Protocols
 protocol MusicCellPresenterProtocol: AnyObject {
     func load()
     func setPlayerViewPresenter()
@@ -17,6 +18,8 @@ protocol MusicCellPresenterProtocol: AnyObject {
 }
 
 final class MusicCellPresenter {
+    
+    // MARK: - Variables
     weak var view: MusicCellProtocol?
     private let music: MusicModel
     var didPlayMusic: ((Int) -> Void)?

@@ -5,6 +5,7 @@
 //  Created by Emre Cambolat on 10.06.2023.
 //
 
+// MARK: - Protocols
 protocol SearchRouterProtocol {
     func navigate(_ route: SearchRoutes)
 }
@@ -14,15 +15,21 @@ enum SearchRoutes {
 }
 
 final class SearchRouter {
+    
+    // MARK: - Variables
     weak var viewController: SearchViewController?
     
+    // MARK: - Functions
     static func createModule() -> SearchViewController {
         let view = SearchViewController()
         let interactor = SearchInteractor()
         let router = SearchRouter()
-        let presenter = SearchPresenter(view: view,
-                                        router: router,
-                                        interactor: interactor)
+        let presenter = SearchPresenter(
+            view: view,
+            router: router,
+            interactor: interactor
+        )
+        
         view.presenter = presenter
         interactor.output = presenter
         router.viewController = view

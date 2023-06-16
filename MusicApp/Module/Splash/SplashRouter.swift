@@ -11,18 +11,27 @@ enum SplashRoute {
     case searchScreen
 }
 
+// MARK: - Protocols
 protocol SplashRouterProtocol: AnyObject {
     func navigate(_ route: SplashRoute)
 }
 
 final class SplashRouter {
+    
+    // MARK: - Variables
     weak var viewController: SplashViewController?
     
+    // MARK: - Functions
     static func createModule() -> SplashViewController {
         let view = SplashViewController()
         let interactor = SplashInteractor()
         let router = SplashRouter()
-        let presenter = SplashPresenter(view: view, router: router, interactor: interactor)
+        let presenter = SplashPresenter(
+            view: view,
+            router: router,
+            interactor: interactor
+        )
+        
         view.presenter = presenter
         interactor.output = presenter
         router.viewController = view

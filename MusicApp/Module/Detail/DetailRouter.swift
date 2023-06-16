@@ -5,6 +5,7 @@
 //  Created by Emre Cambolat on 10.06.2023.
 //
 
+// MARK: - Protocols
 protocol DetailRouterProtocol {
     func navigate(_ route: DetailRoutes)
 }
@@ -14,15 +15,21 @@ enum DetailRoutes {
 }
 
 final class DetailRouter{
+    
+    // MARK: - Variables
     weak var viewController: DetailViewController?
     
+    // MARK: - Functions
     static func createModule() -> DetailViewController {
         let view = DetailViewController()
         let interactor = DetailInteractor()
         let router = DetailRouter()
-        let presenter = DetailPresenter(view: view,
-                                        interactor: interactor,
-                                        router: router)
+        let presenter = DetailPresenter(
+            view: view,
+            interactor: interactor,
+            router: router
+        )
+        
         view.presenter = presenter
         interactor.output = presenter
         router.viewController = view

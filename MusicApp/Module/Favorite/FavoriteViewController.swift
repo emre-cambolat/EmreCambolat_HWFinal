@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Protocols
 protocol FavoriteViewProtocol: AnyObject {
     func setupTableView()
     func reloadTableView()
@@ -22,12 +23,15 @@ protocol FavoriteViewProtocol: AnyObject {
 
 final class FavoriteViewController: UIViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet private weak var tableView: UITableView!
     
+    // MARK: - Variables
     var presenter: FavoritePresenterProtocol!
     private let emptyView = EmptyView()
     private var removeAllButton: UIBarButtonItem?
     
+    // MARK: - Override Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
@@ -39,6 +43,7 @@ final class FavoriteViewController: UIViewController {
         presenter.fetchFavories()
     }
     
+    // MARK: - Functions
     @objc private func removeAllButtonTap() {
         showRemoveAllFavoritesAlert()
     }

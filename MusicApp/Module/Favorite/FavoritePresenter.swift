@@ -5,6 +5,7 @@
 //  Created by Emre Cambolat on 13.06.2023.
 //
 
+// MARK: - Protocols
 protocol FavoritePresenterProtocol: AnyObject {
     func viewDidLoad()
     func fetchFavories()
@@ -17,6 +18,8 @@ protocol FavoritePresenterProtocol: AnyObject {
 }
 
 final class FavoritePresenter {
+    
+    // MARK: - Variables
     unowned var view: FavoriteViewProtocol
     let interactor: FavoriteInteractorProtocol
     let router: FavoriteRouterProtocol
