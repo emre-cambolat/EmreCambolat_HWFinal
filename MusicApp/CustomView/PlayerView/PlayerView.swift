@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Protocols
 protocol PlayerViewProtocol: AnyObject {
     func changePlayerState(_ state: PlayerState)
     func setImage(_ image: UIImage)
@@ -18,15 +19,17 @@ enum PlayerState {
 }
 
 final class PlayerView: UIView {
-
+    
+    // MARK: - IBOutlets
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private var onTapView: UITapGestureRecognizer!
     
+    // MARK: - Variables
     private let nibName = String(describing: PlayerView.self)
     private var contentView:UIView?
-    
     var presenter: PlayerViewPresenterProtocol!
     
+    // MARK: - Override Functions
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -37,6 +40,7 @@ final class PlayerView: UIView {
         commonInit()
     }
     
+    // MARK: - Functions
     private func commonInit() {
         guard let view = loadViewFromNib() else { return }
         view.frame = self.bounds
@@ -52,10 +56,10 @@ final class PlayerView: UIView {
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
+    // MARK: - IBActions
     @IBAction func onTap(_ sender: Any) {
         presenter.listenMusic()
     }
-    
 }
 
 extension PlayerView: PlayerViewProtocol {

@@ -7,6 +7,7 @@
 
 import AVFoundation
 
+
 public final class AudioManager: NSObject, AVAudioPlayerDelegate {
     // MARK: - Variables
     public static let shared = AudioManager()
