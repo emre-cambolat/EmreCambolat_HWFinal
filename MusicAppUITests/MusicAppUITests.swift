@@ -9,76 +9,36 @@ import XCTest
 
 final class MusicAppUITests: XCTestCase {
     
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
+    private var app: XCUIApplication!
     
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        continueAfterFailure = false
+        app = XCUIApplication()
+        app.launchArguments.append("******** UITest ********")
     }
     
     func testExample() throws {
-        // UI tests must launch the application that they test.
-        
-        let app = XCUIApplication()
-        app.launch()
-        
-        delay(seconds: 2)
-        let tabBar = app.tabBars["Tab Bar"]
-        let favoritesButton = tabBar.buttons["Favorites"]
-        favoritesButton.tap()
-        delay(seconds: 1)
-        
-        let searchButton = tabBar.buttons["Search"]
-        searchButton.tap()
-        
-        let searchSearchField = app.searchFields["Search"]
-        searchSearchField.tap()
-        delay(seconds: 1)
-        searchSearchField.typeText("Tarkan")
-        
-        
-        delay(seconds: 5)
-        
-        let tablesQuery = app.tables
-        tablesQuery.cells["Şımarık, Tarkan, Ölürüm Sana"].staticTexts["Tarkan"].tap()
-        
-        let musicappDetailviewNavigationBar = app.navigationBars["MusicApp.DetailView"]
-        let favoriteButton = musicappDetailviewNavigationBar.buttons["favorite"]
-        favoriteButton.tap()
-        delay(seconds: 3)
-        favoriteButton.tap()
-        
-        app.alerts["Are you sure?"].scrollViews.otherElements.buttons["Remove"].tap()
-        delay(seconds: 3)
-        
-        let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
-        element.tap()
-        delay(seconds: 5)
-        element.tap()
-        musicappDetailviewNavigationBar.buttons["iTunes Search"].tap()
-        delay(seconds: 1)
-        tablesQuery.cells["Kuzu Kuzu, Tarkan, Karma"].staticTexts["Tarkan"].tap()
-        delay(seconds: 1)
-        favoriteButton.tap()
-        delay(seconds: 2)
-        searchButton.tap()
-        delay(seconds: 1)
-        searchSearchField.buttons["Clear text"].tap()
-        delay(seconds: 1)
-        favoritesButton.tap()
-        delay(seconds: 2)
-        
-        app.navigationBars["Favorite Musics"].buttons["trash"].tap()
-        delay(seconds: 2)
-        app.alerts["Are you sure?"].scrollViews.otherElements.buttons["Remove"].tap()
-        delay(seconds: 2)
-        
+        launchApp()
+        checkTabBar()
+        tapFavoritesButton()
+        tapSearchButton()
+        searchMusic("Tarkan")
+        waitForSearchResults()
+        selectMusicCell("Şımarık, Tarkan, Ölürüm Sana")
+        XCTAssertTrue(musicDetailViewNavigationBar.exists)
+        toggleFavorite()
+        removeMusicFromFavorites()
+        tapWindowElement()
+        returnToSearch()
+        selectMusicCell("Kuzu Kuzu, Tarkan, Karma")
+        XCTAssertTrue(musicDetailViewNavigationBar.exists)
+        toggleFavorite()
+        tapSearchButton()
+        clearSearchText()
+        tapFavoritesButton()
+        XCTAssertTrue(trashButton.exists)
+        deleteMusicFromFavorites()
     }
     
     func testLaunchPerformance() throws {
@@ -89,12 +49,125 @@ final class MusicAppUITests: XCTestCase {
             }
         }
     }
+}
+
+// MARK: - Helpers
+
+extension MusicAppUITests {
+    private var tabBar: XCUIElement {
+        return app.tabBars["Tab Bar"]
+    }
     
-    private func delay(seconds: Double) {
-            let expectation = XCTestExpectation(description: "Expectation of delay")
-            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-                expectation.fulfill()
-            }
-            wait(for: [expectation], timeout: seconds)
-        }
+    private var favoritesButton: XCUIElement {
+        return tabBar.buttons["Favorites"]
+    }
+    
+    private var searchButton: XCUIElement {
+        return tabBar.buttons["Search"]
+    }
+    
+    private var searchSearchField: XCUIElement {
+        return app.searchFields["Search"]
+    }
+    
+    private var tablesQuery: XCUIElementQuery {
+        return app.tables
+    }
+    
+    private var musicDetailViewNavigationBar: XCUIElement {
+        return app.navigationBars["MusicApp.DetailView"]
+    }
+    
+    private var favoriteButton: XCUIElement {
+        return musicDetailViewNavigationBar.buttons["favorite"]
+    }
+    
+    private var removeButton: XCUIElement {
+        return app.alerts["Are you sure?"].scrollViews.otherElements.buttons["Remove"]
+    }
+    
+    private var windowElement: XCUIElement {
+        return app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+    }
+    
+    private var secondMusicCell: XCUIElement {
+        return tablesQuery.cells["Kuzu Kuzu, Tarkan, Karma"]
+    }
+    
+    private var trashButton: XCUIElement {
+        return app.navigationBars["Favorite Musics"].buttons["trash"]
+    }
+    
+    // MARK: - Test Cases
+    
+    private func launchApp() {
+        app.launch()
+        sleep(2)
+    }
+    
+    private func checkTabBar() {
+        XCTAssertTrue(tabBar.exists)
+        XCTAssertTrue(favoritesButton.exists)
+        XCTAssertTrue(searchButton.exists)
+    }
+    
+    private func tapFavoritesButton() {
+        favoritesButton.tap()
+        sleep(1)
+    }
+    
+    private func tapSearchButton() {
+        searchButton.tap()
+    }
+    
+    private func searchMusic(_ text: String) {
+        searchSearchField.tap()
+        sleep(1)
+        searchSearchField.typeText(text)
+    }
+    
+    private func waitForSearchResults() {
+        sleep(5)
+    }
+    
+    private func selectMusicCell(_ identifier: String) {
+        let musicCell = tablesQuery.cells[identifier]
+        XCTAssertTrue(musicCell.exists)
+        musicCell.staticTexts["Tarkan"].tap()
+    }
+    
+    private func toggleFavorite() {
+        favoriteButton.tap()
+        sleep(3)
+        favoriteButton.tap()
+    }
+    
+    private func removeMusicFromFavorites() {
+        removeButton.tap()
+        sleep(3)
+    }
+    
+    private func tapWindowElement() {
+        windowElement.tap()
+        sleep(5)
+        windowElement.tap()
+    }
+    
+    private func returnToSearch() {
+        musicDetailViewNavigationBar.buttons["iTunes Search"].tap()
+        sleep(1)
+    }
+    
+    private func clearSearchText() {
+        let clearTextButton = searchSearchField.buttons["Clear text"]
+        clearTextButton.tap()
+        sleep(1)
+    }
+    
+    private func deleteMusicFromFavorites() {
+        trashButton.tap()
+        sleep(2)
+        removeButton.tap()
+        sleep(2)
+    }
 }

@@ -25,7 +25,6 @@ final class SplashViewController: UIViewController {
     
     @IBAction private func checkInternetConnection(_ sender: Any) {
         presenter.viewDidAppear()
-        print("Internet kontrol edildi")
     }
 }
 
