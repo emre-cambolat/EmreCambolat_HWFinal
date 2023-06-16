@@ -117,15 +117,11 @@ extension SearchViewController: UITableViewDataSource {
             } else {
                 cell.cellPresenter.didPlayMusic = { trackID in
                     print(trackID)
-                    //                        self.presenter.currentListenID = trackID
                     let currentID = self.presenter.currentListenID
-                    //                        tableView.reloadData()
                     if currentID == trackID {
-                        //                            cell.playerView.changePlayerState(.paused)
                         cell.cellPresenter.load()
                     } else {
                         self.presenter.currentListenID = trackID
-                        print("reload")
                         tableView.reloadData()
                     }
                 }
