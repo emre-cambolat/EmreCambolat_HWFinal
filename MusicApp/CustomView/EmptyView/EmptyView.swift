@@ -40,6 +40,7 @@ final class EmptyView: UIView {
             view.frame = bounds
             view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         }
+        self.isAccessibilityElement = true
     }
     
 }

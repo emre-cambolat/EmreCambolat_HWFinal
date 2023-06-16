@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import MusicApp
+@testable import SDWebImage
 
 final class MusicAppTests: XCTestCase {
 

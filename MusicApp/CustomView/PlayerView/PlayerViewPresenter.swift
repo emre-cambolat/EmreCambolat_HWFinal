@@ -41,10 +41,12 @@ extension PlayerViewPresenter: PlayerViewPresenterProtocol {
             playerState = .paused
             AudioManager.shared.stopAudio()
         case .paused:
+//            didPlayMusic()
             playerState = .listening
             AudioManager.shared.downloadAndPlayAudio(from: audioURL) {
                 self.playerState = .paused
             }
         }
+        
     }
 }

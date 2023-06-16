@@ -31,6 +31,7 @@ class FavoriteCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.isAccessibilityElement = true
         // Initialization code
     }
     
@@ -42,6 +43,7 @@ class FavoriteCell: UITableViewCell {
 extension FavoriteCell: FavoriteCellProtocol {
     func setFavoriteTap() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(favoriteOnTap))
+        tapGesture.isAccessibilityElement = true
         favoriteImageView.addGestureRecognizer(tapGesture)
     }
     

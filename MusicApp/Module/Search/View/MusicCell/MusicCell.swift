@@ -32,6 +32,7 @@ final class MusicCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.isAccessibilityElement = true
         // Initialization code
     }
     

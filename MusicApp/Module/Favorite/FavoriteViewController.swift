@@ -49,8 +49,10 @@ final class FavoriteViewController: UIViewController {
         let removeAction = UIAlertAction(title: "Remove", style: .destructive) { (action) in
             nextButton()
         }
+        removeAction.isAccessibilityElement = true
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        cancelAction.isAccessibilityElement = true
         
         alertController.addAction(removeAction)
         alertController.addAction(cancelAction)
@@ -125,6 +127,7 @@ extension FavoriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(FavoriteCell.self, for: indexPath)
         cell.selectionStyle = .none
+        cell.isAccessibilityElement = true
         
         let music = presenter.favorites(at: indexPath.row)
         cell.cellPresenter = FavoriteCellPresenter(view: cell, music: music)

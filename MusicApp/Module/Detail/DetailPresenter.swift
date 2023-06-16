@@ -6,12 +6,14 @@
 //
 
 import SDWebImage
+import AudioManager
 
 protocol DetailPresenterProtocol {
     func viewDidLoad()
     func tapFavorite()
     func setPlayerViewPresenter()
     func removeFavorite()
+    func stopMusic()
     var getCurrency: String { get }
 }
 
@@ -33,6 +35,9 @@ final class DetailPresenter{
 }
 
 extension DetailPresenter: DetailPresenterProtocol {
+    func stopMusic() {
+        AudioManager.shared.stopAudio()
+    }
     
     func removeFavorite() {
         guard let musicModel = view.getMusic else { return }

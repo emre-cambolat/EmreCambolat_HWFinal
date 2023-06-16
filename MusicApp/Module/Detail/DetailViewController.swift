@@ -53,10 +53,13 @@ final class DetailViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        presenter.stopMusic()
+    }
+    
     @objc func favoriteButtonTap() {
         presenter.tapFavorite()
     }
-
 }
 
 extension DetailViewController: DetailViewControllerProtocol {
@@ -65,17 +68,19 @@ extension DetailViewController: DetailViewControllerProtocol {
     
     func showRemoveFavoriteAlert() {
         let alertController = UIAlertController(title: "Are you sure?", message: "This song will be removed from your favorites", preferredStyle: .alert)
-            
-            let removeAction = UIAlertAction(title: "Remove", style: .destructive) { (action) in
-                self.presenter.removeFavorite()
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-            
-            alertController.addAction(removeAction)
-            alertController.addAction(cancelAction)
-
-            present(alertController, animated: true, completion: nil)
+        
+        let removeAction = UIAlertAction(title: "Remove", style: .destructive) { (action) in
+            self.presenter.removeFavorite()
+        }
+        removeAction.isAccessibilityElement = true
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        cancelAction.isAccessibilityElement = true
+        
+        alertController.addAction(removeAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     var getPlayerView: PlayerView { playerView }
@@ -116,10 +121,10 @@ extension DetailViewController: DetailViewControllerProtocol {
     func setAlbumPriceLabel(_ text: String) {
         if text.isEmpty {
             albumPriceLabel.isHidden = true
-            return
+        } else {
+            let currency = presenter.getCurrency
+            albumPriceLabel.text = "Collection Price: \(text) \(currency)"
         }
-        let currency = presenter.getCurrency
-        albumPriceLabel.text = "Collection Price: \(text) \(currency)"
     }
     
     func changeFavoriteState(_ state: FavoriteState) {

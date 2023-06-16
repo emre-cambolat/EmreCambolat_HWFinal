@@ -20,6 +20,7 @@ enum PlayerState {
 final class PlayerView: UIView {
 
     @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private var onTapView: UITapGestureRecognizer!
     
     private let nibName = String(describing: PlayerView.self)
     private var contentView:UIView?
@@ -41,6 +42,8 @@ final class PlayerView: UIView {
         view.frame = self.bounds
         self.addSubview(view)
         contentView = view
+        self.isAccessibilityElement = true
+        onTapView.isAccessibilityElement = true
     }
     
     private func loadViewFromNib() -> UIView? {
@@ -54,7 +57,6 @@ final class PlayerView: UIView {
     }
     
 }
-
 
 extension PlayerView: PlayerViewProtocol {
     func changePlayerState(_ state: PlayerState) {

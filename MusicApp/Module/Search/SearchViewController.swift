@@ -35,6 +35,10 @@ final class SearchViewController: UIViewController, LoadingShowable {
         navigationItem.title = "iTunes Search"
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        presenter.stopMusic()
+    }
+    
     private func hideKeyboard(){
         view.endEditing(true)
     }
@@ -99,6 +103,7 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(MusicCell.self, for: indexPath)
         cell.selectionStyle = .none
+        cell.isAccessibilityElement = true
         
         if let music = presenter.music(at: indexPath.row) {
             cell.cellPresenter = MusicCellPresenter(view: cell, music: music)
@@ -108,13 +113,15 @@ extension SearchViewController: UITableViewDataSource {
             } else {
                 cell.cellPresenter.didPlayMusic = { trackID in
                     print(trackID)
+                    //                        self.presenter.currentListenID = trackID
                     let currentID = self.presenter.currentListenID
-                    self.presenter.currentListenID = trackID
+                    //                        tableView.reloadData()
                     if currentID == trackID {
-                        cell.playerView.changePlayerState(.paused)
+                        //                            cell.playerView.changePlayerState(.paused)
                         cell.cellPresenter.load()
                     } else {
                         self.presenter.currentListenID = trackID
+                        print("reload")
                         tableView.reloadData()
                     }
                 }
@@ -144,7 +151,6 @@ extension SearchViewController: UISearchBarDelegate {
         } else {
             presenter.searchTimer?.invalidate()
             presenter.searchTimer = Timer.scheduledTimer(withTimeInterval: presenter.searchDelay, repeats: false, block: { [weak self] _ in
-                print("istek atıldı")
                 self?.presenter.fetchMusic(searchText)
             })
         }

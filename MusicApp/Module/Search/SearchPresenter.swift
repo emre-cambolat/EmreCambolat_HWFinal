@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AudioManager
 
 protocol SearchPresenterProtocol: AnyObject {
     func viewDidLoad()
@@ -13,6 +14,7 @@ protocol SearchPresenterProtocol: AnyObject {
     func music(at index: Int) -> MusicModel?
     func didSelectRowAt(index: Int)
     func resetSearch()
+    func stopMusic()
     var numberOfItem: Int { get }
     var searchTimer: Timer? { get set }
     var searchDelay: TimeInterval { get }
@@ -45,6 +47,10 @@ extension SearchPresenter: SearchPresenterProtocol {
     func viewDidLoad() {
         view.setupTableView()
         view.setEmptyView()
+    }
+    
+    func stopMusic() {
+        AudioManager.shared.stopAudio()
     }
     
     var numberOfItem: Int { musics.count }
