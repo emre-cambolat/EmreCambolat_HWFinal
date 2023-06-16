@@ -102,10 +102,12 @@ Turkcell Geleceği Yazanlar Swift Bootcamp Puanlı Final Ödevi
 
 
 - App Review
- <iframe width="1159" height="760" src="https://www.youtube.com/embed/mrBIFfzSrEA" title="iTunes Search App - UI Test" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  
+![App Review](https://www.youtube.com/watch?v=_q2Afzq61a8)
 
 - App UI Test
-<iframe width="1280" height="760" src="https://www.youtube.com/embed/_q2Afzq61a8" title="iTunes Search App" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  
+![App UI Test](https://www.youtube.com/embed/_q2Afzq61a8)
 
   
 
