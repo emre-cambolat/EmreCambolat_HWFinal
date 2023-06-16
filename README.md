@@ -64,9 +64,13 @@ Turkcell Geleceği Yazanlar Swift Bootcamp Puanlı Final Ödevi
   
 ## Application Preview
 
-- Splash Screen
+- Splash and Search Screen
 
-![splash](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/d38ef498-21d1-4803-8897-b9b55ca3381d)
+
+| Splash Screen | Search Screen |
+|---------|---------|
+| ![splash](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/70d5bb3e-a8fd-41c6-9db8-4a931c6cf570) | ![search result](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/93fed8ef-efb0-4c09-9e82-729a0fab8666) |
+
 
 
 - Empty Views
@@ -76,11 +80,9 @@ Turkcell Geleceği Yazanlar Swift Bootcamp Puanlı Final Ödevi
 | ![search empty](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/af3b6a21-353c-45ef-a971-4b70a4bd5ff4) | ![add favorite](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/94420f61-4869-4a32-b9b8-403c2b96f289) | ![search not found](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/746efc5f-a78a-4ba7-b4b4-2f506e43b798) |
 
 
+
 - Search Screen
 
-| |
-|---------|
-| ![search result](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/93fed8ef-efb0-4c09-9e82-729a0fab8666) |
 
 - Detail Screen
 
