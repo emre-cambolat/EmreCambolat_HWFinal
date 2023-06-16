@@ -103,11 +103,11 @@ Turkcell Geleceği Yazanlar Swift Bootcamp Puanlı Final Ödevi
 
 - App Review
   
-![App Review](https://www.youtube.com/watch?v=_q2Afzq61a8)
+https://www.youtube.com/watch?v=_q2Afzq61a8
 
 - App UI Test
   
-![App UI Test](https://www.youtube.com/embed/_q2Afzq61a8)
+https://www.youtube.com/watch?v=_q2Afzq61a8
 
   
 
