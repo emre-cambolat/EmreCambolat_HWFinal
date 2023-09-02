@@ -36,27 +36,27 @@ Turkcell Geleceği Yazanlar Swift Bootcamp Puanlı Final Ödevi
 
 ```
 📦 MusicApp
-├─ MusicApp
-│  ├─ App
-│  ├─ CustomView
-│  │  ├─ EmptyView
-│  │  ├─ LoadingView
-│  │  └─ PlayerView
-│  ├─ Module
-│  │  ├─ Detail
-│  │  ├─ Favorite
-│  │  │  └─ View
-│  │  │     └─ FavoriteCell
-│  │  ├─ Search
-│  │  │  ├─ View
-│  │  │  │  └─ MusicCell
-│  │  │  └─ Entity
-│  │  └─ Spl
-│  └─ Service
-├─ MusicAppTests
-│  └─ Mock
-│     └─ MusicCellTest
-└─ MusicAppUITests
+ ├─ MusicApp
+ │  ├─ App
+ │  ├─ CustomView
+ │  │  ├─ EmptyView
+ │  │  ├─ LoadingView
+ │  │  └─ PlayerView
+ │  ├─ Module
+ │  │  ├─ Detail
+ │  │  ├─ Favorite
+ │  │  │  └─ View
+ │  │  │     └─ FavoriteCell
+ │  │  ├─ Search
+ │  │  │  ├─ View
+ │  │  │  │  └─ MusicCell
+ │  │  │  └─ Entity
+ │  │  └─ Splash
+ │  └─ Service
+ ├─ MusicAppTests
+ │  └─ Mock
+ │     └─ MusicCellTest
+ └─ MusicAppUITests
 
 ```
 
@@ -69,7 +69,8 @@ Turkcell Geleceği Yazanlar Swift Bootcamp Puanlı Final Ödevi
 
 | Splash Screen | Search Screen |
 |---------|---------|
-| ![splash](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/70d5bb3e-a8fd-41c6-9db8-4a931c6cf570) | ![search result](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/93fed8ef-efb0-4c09-9e82-729a0fab8666) |
+|  ![splash](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/00b28cba-63c5-447b-99a7-8d1282a4e350) | ![search result](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/e723c1ed-1ed6-496f-8915-2b71d4f44b4b) |
+
 
 
 
@@ -77,18 +78,15 @@ Turkcell Geleceği Yazanlar Swift Bootcamp Puanlı Final Ödevi
 
 | Search Empty | Add Favorite | Search Not Found |
 |---------|---------|---------|
-| ![search empty](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/af3b6a21-353c-45ef-a971-4b70a4bd5ff4) | ![add favorite](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/94420f61-4869-4a32-b9b8-403c2b96f289) | ![search not found](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/746efc5f-a78a-4ba7-b4b4-2f506e43b798) |
+|  ![search empty](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/327ad2b1-b8a1-41bb-a34a-2aa16e309f95) | ![add favorite](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/6d341c79-aefc-44b4-b936-09a0e0e92431) | ![search not found](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/f2d3677a-fe05-4fc6-8d0b-40f2a1c85878) |
 
-
-
-- Search Screen
 
 
 - Detail Screen
 
 | Detail Favorite | Detail Unfavorite |
 |---------|---------|
-| ![detail favorite](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/e840925d-85eb-49ba-92ff-72bed74ed182) | ![detail unfavorite alert](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/35661985-ba22-4af0-9468-924aa431f600) |
+|  ![detail favorite](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/ef8de947-2d73-4e95-ad3c-999200b68f15) | ![detail unfavorite alert](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/02be6b9c-9d41-43c2-8453-7c508d723822) |
 
 
 
@@ -96,11 +94,12 @@ Turkcell Geleceği Yazanlar Swift Bootcamp Puanlı Final Ödevi
 
 | Favorites | Remove Favorite Alert |
 |---------|---------|
-| ![favorites](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/0107738f-d387-4b0a-bdf4-f7eab1aa8992) | ![favorites remove alert](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/c5e0e992-7283-42ef-94ae-dd810c349436) |
+|  ![favorites](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/f1c8a2e4-7d8f-4ff1-8979-9fb3aa02b346) | ![favorites remove alert](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/80cf5fd9-4fdd-4c95-9bc5-18cf31aa47df) |
 
 - Toast Menu
 
-![toast menu](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/27872dce-d62b-4c73-ab37-9ba6551018cc)
+![toast menu](https://github.com/emre-cambolat/EmreCambolat_HWFinal/assets/83469064/60671c37-b611-4f45-89a4-48b0329f620b)
+
 
 
 - App Review
